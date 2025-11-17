@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate3d(0, 1, 0, 0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate3d(0, 1, 0, 4deg);
+    }
+    100% {
+        transform: translateY(0px) rotate3d(0, 1, 0, 0deg);
+    }
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #1a1a1a, #2c3e50, #2980b9, #16a085);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    transition: 0.5s;
+    perspective: 1000px;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 60px;
+    transform-style: preserve-3d;
+}
+
+.card {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    background: rgba(42, 42, 42, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.4);
+    transition: 0.5s;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform-style: preserve-3d;
+    animation: float 6s ease-in-out infinite;
+}
+
+.card:hover {
+    transform: translateY(-20px);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 100%;
+    padding-top: 20px;
+    transform-style: preserve-3d;
+}
+
+.img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transform: translateZ(30px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s;
+}
+
+.img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card:hover .img {
+    transform: translateZ(50px) rotateX(10deg);
+}
+
+.cardContent {
+    text-align: center;
+    margin-top: -15px;
+}
+
+.cardContent h3 {
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    line-height: 1.2;
+}
+
+.cardContent h3 span {
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
+    text-transform: initial;
+    color: #888;
+    margin-top: 5px;
+}
+
+.cardContent .bio {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 10px;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.sci {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: calc(100% - 40px);
+    list-style: none;
+    transform-style: preserve-3d;
+}
+
+.sci li {
+    margin: 0 10px;
+    transform: translateY(40px) translateZ(20px);
+    opacity: 0;
+    transition: 0.5s;
+    transition-delay: calc(0.1s * var(--i));
+}
+
+.card:hover .sci li {
+    transform: translateY(0) translateZ(50px);
+    opacity: 1;
+}
+
+.sci li a {
+    font-size: 24px;
+    color: #00ffff;
+    text-decoration: none;
+}
+
+.sci li a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.5s;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Light mode styles */
+body.light {
+    background: linear-gradient(-45deg, #f0f0f0, #e0e0e0, #d4e6f1, #d1f2eb);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+body.light .card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light .cardContent h3 {
+    color: #333;
+    text-shadow: none;
+}
+
+body.light .cardContent h3 span {
+    color: #666;
+}
+
+body.light .cardContent .bio {
+    color: #555;
+}
+
+body.light .sci li a {
+    color: #333;
+}
+
+body.light .sci li a:hover {
+    color: #0066ff;
+}
+
+body.light .theme-toggle {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+body.light .theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.2);
+} 

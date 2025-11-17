@@ -1,0 +1,12 @@
+# Editor history files
+.history/
+.snapshots/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
